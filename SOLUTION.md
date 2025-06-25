@@ -1,5 +1,16 @@
 # SOLUTION.md
 
+## 🔒 Git Hooks & Commit Conventions
+
+- Added **Husky** to manage Git hooks.
+- Enforced **Conventional Commits** using `@commitlint/config-conventional`.
+- Integrated **lint-staged** to run Prettier on staged files.
+- Hooks added:
+  - `pre-commit`: runs Prettier via lint-staged
+  - `commit-msg`: checks message format with Commitlint
+- All configurations are placed in the root `package.json` to support monorepo structure.
+
+
 ## ✅ Refactors & Improvements
 
 ### 1. Replaced Blocking File I/O
