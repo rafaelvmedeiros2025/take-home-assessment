@@ -3,8 +3,9 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
-    "prepare": "husky install",
-    "test": "npm --workspace backend test && npm --workspace frontend test",
+    "prepare": "husky",
+    "pre-commit": "npx lint-staged && npm test -- --bail --maxWorkers=2",
+    "test": "npm --workspace backend test",
     "lint": "npm --workspace backend run lint && npm --workspace frontend run lint"
   },
   "devDependencies": {
@@ -15,12 +16,22 @@
     "prettier": "^3.2.5"
   },
   "lint-staged": {
-    "*.{js,json,ts,tsx}": [
+    "*.{js,ts,tsx}": [
+      "prettier --write",
+      "eslint --fix"
+    ],
+    "*.json": [
       "prettier --write"
     ]
   },
   "workspaces": [
     "backend",
     "frontend"
-  ]
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "npx lint-staged && npm test -- --bail --maxWorkers=2",
+      "commit-msg": "npx --no -- commitlint --edit \"$1\""
+    }
+  }
 }

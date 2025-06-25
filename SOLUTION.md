@@ -6,10 +6,11 @@
 - Enforced **Conventional Commits** using `@commitlint/config-conventional`.
 - Integrated **lint-staged** to run Prettier on staged files.
 - Hooks added:
-  - `pre-commit`: runs Prettier via lint-staged
+  - `pre-commit:
+    runs Prettier via lint-staged
+    runs test via jest
   - `commit-msg`: checks message format with Commitlint
 - All configurations are placed in the root `package.json` to support monorepo structure.
-
 
 ## ✅ Refactors & Improvements
 
