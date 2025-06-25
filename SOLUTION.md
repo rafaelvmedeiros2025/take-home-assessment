@@ -1,6 +1,8 @@
 # SOLUTION.md
 
-## ✅ Refactors & Improvements
+## 📁 Backend Structure
+
+### ✅ Refactors & Improvements
 
 ### 1. Replaced Blocking File I/O
 
@@ -74,4 +76,35 @@
 
 ---
 
-## 📁 Backend Structure
+## 🖥️ Frontend Enhancements
+
+- **Memory Leak Fixed**: Implemented `AbortController` in `Items.js` to cancel fetch requests on component unmount and prevent calling state updates on unmounted components.
+
+- **Pagination & Search**: Added server-side pagination and search in `Items.js`:
+  - Search input updates `q` parameter and resets page to 1.
+  - "Prev"/"Next" buttons navigate through pages using `limit` and `offset` query params.
+
+- **List Virtualization**: Integrated `react-window`'s `FixedSizeList` to render only visible rows, keeping the UI smooth for large lists.
+
+- **Loading & Skeleton States**: Replaced plain "Loading..." text with animated skeleton rows for better UX during data fetch.
+
+- **Accessibility Improvements**:
+  - Added `aria-busy`, `aria-label`, and `aria-live` attributes on loading and content sections.
+  - Provided descriptive `aria-labels` on inputs and navigation buttons.
+
+- **Item Detail Page Tests**: Created Jest + React Testing Library tests for `ItemDetail`:
+  - Loading state test with pending fetch mock.
+  - Success test verifying heading, category, and price using custom matchers.
+  - Error test verifying error message and back button navigation.
+
+- **Items List Tests**: Added tests for `Items` component:
+  - Loading skeleton visibility with unresolved fetch.
+  - Search functionality updates results on input change.
+  - Pagination test simulating multiple pages and button clicks.
+
+- **Global Test Setup**:
+  - Configured `jest-fetch-mock` for global `fetch` mocks.
+  - Imported `@testing-library/jest-dom` in `setupTests.js` for extended DOM matchers.
+  - Ensured `DataProvider` context is wrapped around tested components to provide `useData` values.
+
+This completes the frontend improvements, adding robust functionality, performance optimizations, and comprehensive tests.
