@@ -1,0 +1,26 @@
+{
+  "name": "monorepo-root",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "prepare": "husky install",
+    "test": "npm --workspace backend test && npm --workspace frontend test",
+    "lint": "npm --workspace backend run lint && npm --workspace frontend run lint"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^18.0.0",
+    "@commitlint/config-conventional": "^18.0.0",
+    "husky": "^9.0.0",
+    "lint-staged": "^15.2.0",
+    "prettier": "^3.2.5"
+  },
+  "lint-staged": {
+    "*.{js,json,ts,tsx}": [
+      "prettier --write"
+    ]
+  },
+  "workspaces": [
+    "backend",
+    "frontend"
+  ]
+}
