@@ -5,7 +5,7 @@
   "scripts": {
     "prepare": "husky",
     "pre-commit": "npx lint-staged && npm test -- --bail --maxWorkers=2",
-    "test": "npm --workspace backend test",
+    "test": "npm --workspace backend test && npm --workspace frontend test",
     "lint": "npm --workspace backend run lint && npm --workspace frontend run lint"
   },
   "devDependencies": {
