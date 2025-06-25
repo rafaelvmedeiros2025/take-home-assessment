@@ -37,6 +37,19 @@ class ItemsService {
 
   async createItem(item) {
     const data = await readData();
+    // Check if item with same name already exists (case-insensitive)
+    const exists = data.some(
+      (existingItem) =>
+        existingItem.name.toLowerCase() === item.name.toLowerCase()
+    );
+
+    if (exists) {
+      // Return null or throw an error — aqui escolhi lançar erro
+      const error = new Error("Item already exists");
+      error.status = 409; // HTTP 409 Conflict
+      throw error;
+    }
+
     item.id = Date.now();
     data.push(item);
     await writeData(data);
